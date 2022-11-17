@@ -4,6 +4,8 @@
  */
 package Main;
 
+import javax.swing.*;
+
 /**
  *
  * @author SYAFIQ
@@ -15,6 +17,7 @@ public class StaffTU extends javax.swing.JFrame {
      */
     public StaffTU() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -26,17 +29,50 @@ public class StaffTU extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mnKelas = new javax.swing.JMenu();
+        mnSiswa = new javax.swing.JMenu();
+        mnAccount = new javax.swing.JMenu();
+        mnItLogout = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+
+        mnKelas.setText("Kelas");
+        jMenuBar1.add(mnKelas);
+
+        mnSiswa.setText("Siswa");
+        jMenuBar1.add(mnSiswa);
+
+        mnAccount.setText("Account");
+
+        mnItLogout.setText("Logout");
+        mnAccount.add(mnItLogout);
+
+        jMenuBar1.add(mnAccount);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -78,5 +114,11 @@ public class StaffTU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu mnAccount;
+    private javax.swing.JMenuItem mnItLogout;
+    private javax.swing.JMenu mnKelas;
+    private javax.swing.JMenu mnSiswa;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,7 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
-    
+    Connection conn;
+    Statement stmt;
+    ResultSet rs;
+    String sql;
 
     /**
      * Creates new form Login
@@ -22,7 +25,9 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         
         DBConnection DB = new DBConnection();
-        DB.DBConn();
+        DB.config();
+        conn = DB.conn;
+        stmt = DB.stm;        
         
     }
 
@@ -152,7 +157,18 @@ public class Login extends javax.swing.JFrame {
         
         // Login Process
         try {
+            sql = "SELECT * FROM tb_staff_tu WHERE username ='" + strUser + "' AND password ='" + strPass + "'";
+            rs = stmt.executeQuery(sql);
             
+            if(rs.next()) {
+                if(strUser.equals(rs.getString("username")) && strPass.equals(rs.getString("password"))) {
+                    JOptionPane.showMessageDialog(null, "Login Berhasil!");
+                    DBConnection.nama = rs.getString("nama");
+                    DBConnection.username = rs.getString("username");
+                    this.setVisible(false);
+                    
+                }
+            }
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }

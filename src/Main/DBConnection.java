@@ -4,9 +4,7 @@
  */
 package Main;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,24 +17,17 @@ public class DBConnection {
     public static String username;
     public static String nama;
     
-    private static Connection conn;
+    public static Connection conn;
+    public static Statement stm;
     
     // Database Connection Method
-    public static Connection DBConn() throws SQLException {
-        if(conn == null) {
-            try {
-                // Variable Database
-                String DB = "jdbc:mysql://localhost:3306/db_aplikasi_spp";
-                String user = "";
-                String pass = "";
-                
-                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                conn = (Connection) DriverManager.getConnection(DB, user, pass);
-            } catch(SQLException e) {
-                JOptionPane.showMessageDialog(null, e);
-            }
+    public void config() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_aplikasi_spp", "root", "");
+            stm = conn.createStatement();
+        } catch(ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        return conn;
     }
 }
