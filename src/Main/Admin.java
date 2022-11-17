@@ -34,9 +34,10 @@ public class Admin extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar2 = new javax.swing.JMenuBar();
-        mnKelas = new javax.swing.JMenu();
-        mnSiswa = new javax.swing.JMenu();
-        mnStaffTU = new javax.swing.JMenu();
+        mnMaster = new javax.swing.JMenu();
+        mnItKelas = new javax.swing.JMenuItem();
+        mnItSiswa = new javax.swing.JMenuItem();
+        mnItStaffTU = new javax.swing.JMenuItem();
         mnAccount = new javax.swing.JMenu();
         mnItLogout = new javax.swing.JMenuItem();
 
@@ -59,14 +60,23 @@ public class Admin extends javax.swing.JFrame {
             .addGap(0, 277, Short.MAX_VALUE)
         );
 
-        mnKelas.setText("Kelas");
-        jMenuBar2.add(mnKelas);
+        mnMaster.setText("Master");
 
-        mnSiswa.setText("Siswa");
-        jMenuBar2.add(mnSiswa);
+        mnItKelas.setText("Kelas");
+        mnItKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnItKelasActionPerformed(evt);
+            }
+        });
+        mnMaster.add(mnItKelas);
 
-        mnStaffTU.setText("Staff TU");
-        jMenuBar2.add(mnStaffTU);
+        mnItSiswa.setText("Siswa");
+        mnMaster.add(mnItSiswa);
+
+        mnItStaffTU.setText("Staff TU");
+        mnMaster.add(mnItStaffTU);
+
+        jMenuBar2.add(mnMaster);
 
         mnAccount.setText("Account");
 
@@ -99,8 +109,18 @@ public class Admin extends javax.swing.JFrame {
     private void mnItLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItLogoutActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
+        DBConnection.username = "";
         new LoginAdmin().setVisible(true);
     }//GEN-LAST:event_mnItLogoutActionPerformed
+
+    private void mnItKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItKelasActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        AdminKelas kelas = new AdminKelas();
+        jDesktopPane1.add(kelas);
+        kelas.setVisible(true);
+    }//GEN-LAST:event_mnItKelasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,9 +164,10 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu mnAccount;
+    private javax.swing.JMenuItem mnItKelas;
     private javax.swing.JMenuItem mnItLogout;
-    private javax.swing.JMenu mnKelas;
-    private javax.swing.JMenu mnSiswa;
-    private javax.swing.JMenu mnStaffTU;
+    private javax.swing.JMenuItem mnItSiswa;
+    private javax.swing.JMenuItem mnItStaffTU;
+    private javax.swing.JMenu mnMaster;
     // End of variables declaration//GEN-END:variables
 }

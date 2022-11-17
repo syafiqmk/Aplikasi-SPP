@@ -22,20 +22,30 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="mnKelas">
+        <Menu class="javax.swing.JMenu" name="mnMaster">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Kelas"/>
+            <Property name="text" type="java.lang.String" value="Master"/>
           </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="mnSiswa">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Siswa"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="mnStaffTU">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Staff TU"/>
-          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnItKelas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Kelas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnItKelasActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnItSiswa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Siswa"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnItStaffTU">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Staff TU"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnAccount">
           <Properties>
