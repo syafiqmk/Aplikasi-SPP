@@ -4,17 +4,26 @@
  */
 package Main;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author SYAFIQ
  */
 public class Login extends javax.swing.JFrame {
+    
+    
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        
+        DBConnection DB = new DBConnection();
+        DB.DBConn();
+        
     }
 
     /**
@@ -47,6 +56,11 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnLoginAdmin.setText("Login Admin");
         btnLoginAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -80,12 +94,11 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btnLogin)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btnClear))
-                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnLogin)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnClear))
+                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 90, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -129,6 +142,21 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
         new LoginAdmin().setVisible(true);
     }//GEN-LAST:event_btnLoginAdminActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        
+        // Declare variables and get user input
+        String strUser = txtUsername.getText();
+        String strPass = new String(txtPassword.getPassword());
+        
+        // Login Process
+        try {
+            
+        } catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

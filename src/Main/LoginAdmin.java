@@ -145,6 +145,7 @@ public class LoginAdmin extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(null, "Username : " + strUser + "\nPassword : " + strPass);
         // Check admin credentials
         if((strUser.equals("admin")) && (strPass.equals("admin"))) {
+            DBConnection.username = strUser;
             this.setVisible(false);
             new Admin().setVisible(true);
         } else {

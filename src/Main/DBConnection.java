@@ -15,11 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class DBConnection {
     
-    private static Connection DBConnect;
+    // Declare global variable for user
+    public static String username;
+    public static String nama;
+    
+    private static Connection conn;
     
     // Database Connection Method
     public static Connection DBConn() throws SQLException {
-        if(DBConnect == null) {
+        if(conn == null) {
             try {
                 // Variable Database
                 String DB = "jdbc:mysql://localhost:3306/db_aplikasi_spp";
@@ -27,12 +31,12 @@ public class DBConnection {
                 String pass = "";
                 
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                DBConnect = (Connection) DriverManager.getConnection(DB, user, pass);
+                conn = (Connection) DriverManager.getConnection(DB, user, pass);
             } catch(SQLException e) {
-                JOptionPane.showMessageDialog(null, "Database Fail to Connect!");
+                JOptionPane.showMessageDialog(null, e);
             }
         }
         
-        return DBConnect;
+        return conn;
     }
 }
