@@ -39,11 +39,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Siswa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnItSiswaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnItStaffTU">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Staff TU"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnItStaffTUActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -71,9 +71,19 @@ public class Admin extends javax.swing.JFrame {
         mnMaster.add(mnItKelas);
 
         mnItSiswa.setText("Siswa");
+        mnItSiswa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnItSiswaActionPerformed(evt);
+            }
+        });
         mnMaster.add(mnItSiswa);
 
         mnItStaffTU.setText("Staff TU");
+        mnItStaffTU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnItStaffTUActionPerformed(evt);
+            }
+        });
         mnMaster.add(mnItStaffTU);
 
         jMenuBar2.add(mnMaster);
@@ -121,6 +131,20 @@ public class Admin extends javax.swing.JFrame {
         jDesktopPane1.add(kelas);
         kelas.setVisible(true);
     }//GEN-LAST:event_mnItKelasActionPerformed
+
+    private void mnItSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItSiswaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_mnItSiswaActionPerformed
+
+    private void mnItStaffTUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItStaffTUActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        AdminStaffTU staffTU = new AdminStaffTU();
+        jDesktopPane1.add(staffTU);
+        staffTU.setVisible(true);
+    }//GEN-LAST:event_mnItStaffTUActionPerformed
 
     /**
      * @param args the command line arguments
