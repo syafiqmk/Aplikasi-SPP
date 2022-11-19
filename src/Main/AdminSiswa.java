@@ -8,6 +8,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -59,6 +60,7 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
         txtSPP.setText("");
         txtNoHP.setText("");
         cmbKelas.setSelectedIndex(0);
+        txtOldNisn.setText("");
     }
     
     public void addKelas() {
@@ -117,6 +119,7 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
         btnDelete = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtNoHP = new javax.swing.JTextField();
+        txtOldNisn = new javax.swing.JTextField();
 
         setClosable(true);
 
@@ -168,6 +171,11 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSiswa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSiswaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblSiswa);
 
         btnClear.setText("Clear");
@@ -185,10 +193,17 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
 
         jLabel13.setText("No HP");
+
+        txtOldNisn.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,7 +251,10 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
                             .addComponent(cmbKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtOldNisn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(364, 364, 364)
@@ -253,7 +271,8 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(txtOldNisn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -360,6 +379,92 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
 //        JOptionPane.showMessageDialog(null, strTglLahir);
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    private void tblSiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSiswaMouseClicked
+        // TODO add your handling code here:
+        
+        int row = tblSiswa.getSelectedRow();
+        String id = tblSiswa.getModel().getValueAt(row, 0).toString();
+        
+        try {
+            sql = "SELECT * FROM tb_siswa WHERE nisn = '"+id+"'";
+            rs = stmt.executeQuery(sql);
+            if(rs.next()) {
+                txtNISN.setText(rs.getString("nisn"));
+                txtNama.setText(rs.getString("nama"));
+                txtTmpLahir.setText(rs.getString("tmp_lahir"));
+                
+                Date date = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("tgl_lahir"));
+                dateLahir.setDate(date);
+                
+                if(rs.getString("kelamin").equals("Laki-laki")) {
+                    radLaki.setSelected(true);
+                } else {
+                    radPerempuan.setSelected(true);
+                }
+                
+                areaAlamat.setText(rs.getString("alamat"));
+                txtOrtu.setText(rs.getString("nama_ortu"));
+                txtSPP.setText(rs.getString("biaya_spp"));
+                txtNoHP.setText(rs.getString("no_hp"));
+                
+                int length = cmbKelas.getItemCount();
+                for(int i =0; i<length; i++) {
+                    String kelas = cmbKelas.getItemAt(i);
+                    String[] idKelas = kelas.split("-");
+                    if(idKelas[0].equals(rs.getString("id_kelas"))) {
+                        cmbKelas.setSelectedIndex(i);
+                    }
+                }
+                
+                txtOldNisn.setText(rs.getString("nisn"));
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_tblSiswaMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        
+        // Declare variabels and get user input
+        String strOldNisn = txtOldNisn.getText();
+        String strNisn = txtNISN.getText();
+        String strNama = txtNama.getText();
+        String strTmpLahir = txtTmpLahir.getText();
+        String strTglLahir = "";
+        String strKelamin = "";
+        String strAlamat = areaAlamat.getText();
+        String strOrtu = txtOrtu.getText();
+        String strSPP = txtSPP.getText();
+        String strNoHP = txtNoHP.getText();
+        String strKelas = cmbKelas.getSelectedItem().toString();
+        
+        // Select Kelamin
+        if(radLaki.isSelected()) {
+            strKelamin = "Laki-laki";
+        } else {
+            strKelamin = "Perempuan";
+        }
+        
+        // Get Date
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        strTglLahir = date.format(dateLahir.getDate());
+        
+        // Split strKelas to get kelas id
+        String[] idKelas = strKelas.split("-");
+        
+        // Update Process
+        try {
+            sql = "UPDATE tb_siswa SET nisn = '"+strNisn+"', nama = '"+strNama+"', tmp_lahir = '"+strTmpLahir+"', tgl_lahir = '"+strTglLahir+"', kelamin = '"+strKelamin+"', alamat = '"+strAlamat+"', nama_ortu = '"+strOrtu+"', no_hp = '"+strNoHP+"', id_kelas = '"+idKelas[0]+"' WHERE nisn = '"+strOldNisn+"'";
+            stmt.execute(sql);
+            JOptionPane.showMessageDialog(null, "Data Berhasil Di-Update!");
+            clearInput();
+            getData();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaAlamat;
@@ -392,6 +497,7 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNISN;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNoHP;
+    private javax.swing.JTextField txtOldNisn;
     private javax.swing.JTextField txtOrtu;
     private javax.swing.JTextField txtSPP;
     private javax.swing.JTextField txtTmpLahir;
