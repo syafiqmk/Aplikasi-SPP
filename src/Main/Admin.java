@@ -134,7 +134,11 @@ public class Admin extends javax.swing.JFrame {
 
     private void mnItSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItSiswaActionPerformed
         // TODO add your handling code here:
-        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        AdminSiswa siswa = new AdminSiswa();
+        jDesktopPane1.add(siswa);
+        siswa.setVisible(true);
     }//GEN-LAST:event_mnItSiswaActionPerformed
 
     private void mnItStaffTUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItStaffTUActionPerformed
@@ -145,7 +149,7 @@ public class Admin extends javax.swing.JFrame {
         jDesktopPane1.add(staffTU);
         staffTU.setVisible(true);
     }//GEN-LAST:event_mnItStaffTUActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
