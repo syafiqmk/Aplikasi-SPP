@@ -5,6 +5,7 @@
 package Main;
 
 import java.sql.*;
+import net.proteanit.sql.DbUtils;
 import javax.swing.JOptionPane;
 
 /**
@@ -166,12 +167,14 @@ public class Login extends javax.swing.JFrame {
                     DBConnection.nama = rs.getString("nama");
                     DBConnection.username = rs.getString("username");
                     this.setVisible(false);
-                    
+                    StaffTU staff = new StaffTU();
+                    staff.setVisible(true);
                 }
             }
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+//        JOptionPane.showMessageDialog(null, "User : " +strUser+ "\nPass : " + strPass);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

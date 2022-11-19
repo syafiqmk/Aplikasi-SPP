@@ -31,8 +31,8 @@ public class StaffTU extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnKelas = new javax.swing.JMenu();
-        mnSiswa = new javax.swing.JMenu();
+        mnSPP = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mnAccount = new javax.swing.JMenu();
         mnItLogout = new javax.swing.JMenuItem();
 
@@ -49,15 +49,21 @@ public class StaffTU extends javax.swing.JFrame {
             .addGap(0, 277, Short.MAX_VALUE)
         );
 
-        mnKelas.setText("Kelas");
-        jMenuBar1.add(mnKelas);
+        mnSPP.setText("SPP");
 
-        mnSiswa.setText("Siswa");
-        jMenuBar1.add(mnSiswa);
+        jMenuItem1.setText("Siswa");
+        mnSPP.add(jMenuItem1);
+
+        jMenuBar1.add(mnSPP);
 
         mnAccount.setText("Account");
 
         mnItLogout.setText("Logout");
+        mnItLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnItLogoutActionPerformed(evt);
+            }
+        });
         mnAccount.add(mnItLogout);
 
         jMenuBar1.add(mnAccount);
@@ -77,6 +83,15 @@ public class StaffTU extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnItLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnItLogoutActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        this.setVisible(false);
+        login.setVisible(true);
+        DBConnection.nama = "";
+        DBConnection.username = "";
+    }//GEN-LAST:event_mnItLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,9 +131,9 @@ public class StaffTU extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mnAccount;
     private javax.swing.JMenuItem mnItLogout;
-    private javax.swing.JMenu mnKelas;
-    private javax.swing.JMenu mnSiswa;
+    private javax.swing.JMenu mnSPP;
     // End of variables declaration//GEN-END:variables
 }
