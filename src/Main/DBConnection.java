@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 public class DBConnection {
     
     // Declare global variable for user
+    public static String id;
     public static String username;
     public static String nama;
     

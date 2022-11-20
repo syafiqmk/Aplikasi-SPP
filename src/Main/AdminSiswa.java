@@ -124,6 +124,7 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
         setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Data Siswa");
 
         jLabel2.setText("Form");

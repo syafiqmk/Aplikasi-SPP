@@ -52,6 +52,11 @@ public class StaffTU extends javax.swing.JFrame {
         mnSPP.setText("SPP");
 
         jMenuItem1.setText("Siswa");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         mnSPP.add(jMenuItem1);
 
         jMenuBar1.add(mnSPP);
@@ -92,6 +97,15 @@ public class StaffTU extends javax.swing.JFrame {
         DBConnection.nama = "";
         DBConnection.username = "";
     }//GEN-LAST:event_mnItLogoutActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        StaffTUSiswa siswa = new StaffTUSiswa();
+        jDesktopPane1.add(siswa);
+        siswa.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

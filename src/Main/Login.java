@@ -164,6 +164,7 @@ public class Login extends javax.swing.JFrame {
             if(rs.next()) {
                 if(strUser.equals(rs.getString("username")) && strPass.equals(rs.getString("password"))) {
                     JOptionPane.showMessageDialog(null, "Login Berhasil!");
+                    DBConnection.id = rs.getString("id");
                     DBConnection.nama = rs.getString("nama");
                     DBConnection.username = rs.getString("username");
                     this.setVisible(false);
