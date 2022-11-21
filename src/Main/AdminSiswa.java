@@ -69,6 +69,7 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
             rs = stmt.executeQuery(sql);
             while(rs.next()) {
                 cmbKelas.addItem(rs.getString("id") + "-" + rs.getString("tingkat") + rs.getString("kelas"));
+                cmbSKelas.addItem(rs.getString("id") + "-" + rs.getString("tingkat") + rs.getString("kelas"));
             }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -120,6 +121,13 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         txtNoHP = new javax.swing.JTextField();
         txtOldNisn = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtSNisn = new javax.swing.JTextField();
+        btnCariNisn = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        cmbSKelas = new javax.swing.JComboBox<>();
+        btnFilterKelas = new javax.swing.JButton();
+        btnClearTable = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -211,63 +219,101 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
 
         txtOldNisn.setEditable(false);
 
+        jLabel14.setText("NISN");
+
+        btnCariNisn.setText("Cari");
+        btnCariNisn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariNisnActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Kelas");
+
+        btnFilterKelas.setText("Filter");
+        btnFilterKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterKelasActionPerformed(evt);
+            }
+        });
+
+        btnClearTable.setText("Clear");
+        btnClearTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(364, 364, 364)
+                .addComponent(jLabel1)
+                .addContainerGap(482, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel13)
+                    .addComponent(btnClear))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel13)
-                            .addComponent(btnClear))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(radLaki)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(radPerempuan))
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(dateLahir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtTmpLahir)
-                                    .addComponent(txtNISN)
-                                    .addComponent(txtNama)
-                                    .addComponent(txtOrtu)
-                                    .addComponent(txtSPP)
-                                    .addComponent(txtNoHP)
-                                    .addComponent(cmbKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCreate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnUpdate)
-                                .addGap(12, 12, 12)
-                                .addComponent(btnDelete)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtOldNisn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnUpdate)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnDelete))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(jLabel1)))
-                .addGap(12, 12, 12))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtOldNisn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(radLaki)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(radPerempuan))
+                                .addComponent(jScrollPane1)
+                                .addComponent(dateLahir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtTmpLahir)
+                                .addComponent(txtNISN)
+                                .addComponent(txtNama)
+                                .addComponent(txtOrtu)
+                                .addComponent(txtSPP)
+                                .addComponent(txtNoHP)
+                                .addComponent(cmbKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSNisn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCariNisn)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbSKelas, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFilterKelas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClearTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +326,14 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel12)
-                    .addComponent(txtOldNisn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtOldNisn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtSNisn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCariNisn)
+                    .addComponent(jLabel15)
+                    .addComponent(cmbSKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilterKelas)
+                    .addComponent(btnClearTable))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -487,21 +540,64 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnCariNisnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariNisnActionPerformed
+        // TODO add your handling code here:
+        
+        // Declare variable
+        String strNisn = txtSNisn.getText();
+        
+        try {
+            sql = "SELECT s.nisn, s.nama, k.tingkat, k.kelas FROM tb_siswa s JOIN tb_kelas k WHERE s.id_kelas = k.id AND s.nisn LIKE '%"+strNisn+"%'";
+            rs = stmt.executeQuery(sql);
+            tblSiswa.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnCariNisnActionPerformed
+
+    private void btnFilterKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterKelasActionPerformed
+        // TODO add your handling code here:
+        
+        String kelas = cmbSKelas.getSelectedItem().toString();
+        String[] id = kelas.split("-");
+        
+        try {
+            sql = "SELECT s.nisn, s.nama, k.tingkat, k.kelas FROM tb_siswa s JOIN tb_kelas k WHERE s.id_kelas = k.id AND s.id_kelas = '"+id[0]+"'";
+            rs = stmt.executeQuery(sql);
+            tblSiswa.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnFilterKelasActionPerformed
+
+    private void btnClearTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearTableActionPerformed
+        // TODO add your handling code here:
+        getData();
+        txtSNisn.setText("");
+        cmbSKelas.setSelectedIndex(0);
+    }//GEN-LAST:event_btnClearTableActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea areaAlamat;
     private javax.swing.ButtonGroup btgKelamin;
+    private javax.swing.JButton btnCariNisn;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnClearTable;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnFilterKelas;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbKelas;
+    private javax.swing.JComboBox<String> cmbSKelas;
     private com.toedter.calendar.JDateChooser dateLahir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -521,6 +617,7 @@ public class AdminSiswa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNoHP;
     private javax.swing.JTextField txtOldNisn;
     private javax.swing.JTextField txtOrtu;
+    private javax.swing.JTextField txtSNisn;
     private javax.swing.JTextField txtSPP;
     private javax.swing.JTextField txtTmpLahir;
     // End of variables declaration//GEN-END:variables
